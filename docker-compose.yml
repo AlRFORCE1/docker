@@ -1,0 +1,16 @@
+services:
+  web:
+    image: localhost/nginx-forbin:latest
+    build: ./nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./website:/website
+    links:
+      - php
+    restart: always
+  php:
+    image: php:8.0-fpm
+    volumes:
+      - ./website:/website
+    restart: always
